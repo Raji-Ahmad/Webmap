@@ -22,6 +22,10 @@ var baseLayers = {
     "Satellite": googleSat
 };
 
+var currtnt;
+
+
+
 // function selectBuilding(bulding){
      
 // }
@@ -32,8 +36,12 @@ var baseLayers = {
 // });
 
 function loadGreenwood(){
+    if (currtnt){
+        currtnt.remove()
+    }
 
-var floor1 = L.Proj.geoJson(l1)
+
+var floor1 = L.Proj.geoJson(l1).addTo(map);
 var floor2 = L.Proj.geoJson(l2)
 var floor3 = L.Proj.geoJson(l3)
 var floor11 = L.Proj.geoJson(l11)
@@ -46,7 +54,7 @@ var floor11p = L.Proj.geoJson(l11p)
 var lineGroup = L.featureGroup([floor1, floor2, floor3, floor11]);
 var polygonGroup = L.featureGroup([floor1p, floor2p, floor3p, floor11p]);
 
-var greenwood = L.featureGroup([lineGroup, polygonGroup]).addTo(map);
+var greenwood = L.featureGroup([lineGroup, polygonGroup])
 //map.fitBounds(greenwood.getBounds());
 var center = greenwood.getBounds().getCenter();
 map.setView(center, 19)
@@ -70,14 +78,49 @@ var overlays = {
     
 };
 
-L.control.layers(baseLayers, overlays).addTo(map);
+currtnt = L.control.layers(baseLayers, overlays).addTo(map);
 
-return greenwood;
 
 }
 
-var greenwood = loadGreenwood();
-var plan = L.Proj.geoJson(data, {maxZoom:25});
+function loadHouston(){
+    console.log('load Houston')
+
+    if (currtnt){
+        
+        currtnt.remove()
+    }
+    
+    var plan = L.Proj.geoJson(data, {maxZoom:25}).addTo(map);
+
+    var center = plan.getBounds().getCenter();
+    map.setView(center, 19)
+
+    var overlays = {
+        "Houston": plan}
+
+    currtnt = L.control.layers(baseLayers, overlays).addTo(map);
+    
+}
+
+
+var buildings = {
+    'Greenwood': loadGreenwood,
+    "Houston": loadHouston
+}
+
+ loadGreenwood();
+
+ function changeBuilding(ind){
+    if (ind=='0'){
+        loadGreenwood();
+        return
+    }
+    if(ind=='1'){
+        loadHouston();
+        return
+    }
+ }
 // plan.addTo(map);
 // // var legend = L.control({position: 'bottomright'});
 // // legend.addTo(map);
