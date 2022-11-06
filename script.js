@@ -16,16 +16,16 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // });
 
 
-var l1 = $.getJSON('jsons/Level1.json')
-var l2 = $.getJSON('jsons/Level2.json')
-var l3 = $.getJSON('jsons/Level3.json')
-var l11 = $.getJSON('jsons/Level11-14.json')
+var l1 = $.getJSON('jsons/Level_1.json')
+var l2 = $.getJSON('jsons/Level_2.json')
+var l3 = $.getJSON('jsons/Level_3.json')
+var l11 = $.getJSON('jsons/Level_11-14.json')
 
 
-var l1p = $.getJSON('jsons/Level1P.json')
-var l2p = $.getJSON('jsons/Level2P.json')
-var l3p = $.getJSON('jsons/Level3P.json')
-var l11p = $.getJSON('jsons/Level11-14P.json')
+var l1p = $.getJSON('jsons/Level_1P.json')
+var l2p = $.getJSON('jsons/Level_2P.json')
+var l3p = $.getJSON('jsons/Level_3P.json')
+var l11p = $.getJSON('jsons/Level_11-14P.json')
 
 
 L.geoJson(l1).addTo(map)
