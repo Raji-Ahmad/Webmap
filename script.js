@@ -6,5 +6,28 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom:25
 }).addTo(map);
 
-var plan = L.geoJSON(data, {maxZoom:25}).addTo(map);
+// function selectBuilding(bulding){
+     
+// }
+
+// $.getJSON('houston2.geojson', function (data) {
+//     // Define the geojson layer and add it to the map
+//     //L.geoJson(data).addTo(map);
+// });
+
+
+var l1 = $.getJSON('jsons/Level1.json')
+var l2 = $.getJSON('jsons/Level2.json')
+var l3 = $.getJSON('jsons/Level3.json')
+var l11 = $.getJSON('jsons/Level11-14.json')
+
+
+var l1p = $.getJSON('jsons/Level1P.json')
+var l2p = $.getJSON('jsons/Level2P.json')
+var l3p = $.getJSON('jsons/Level3P.json')
+var l11p = $.getJSON('jsons/Level11-14P.json')
+
+
+L.geoJson(l1).addTo(map)
+// var plan = L.geoJSON(data, {maxZoom:25}).addTo(map);
 L.control.scale().addTo(map);
